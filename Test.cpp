@@ -67,7 +67,7 @@ CHECK(phonetic::find("test dezd","test").compare("dezd")==0);
 }
 
 TEST_CASE("padding"){
-for(int i=0;i<25;i++){
+for(int i=0;i<=25;i++){
 char c=i+65;
 std::string sc="";
 sc=sc+c;
@@ -75,6 +75,8 @@ char d=i+97;
 std::string sd="";
 sd=sd+d;
 CHECK(phonetic::find(sc,sc).compare(sc)==0);
+CHECK(phonetic::find(sc+sc,sc+sc).compare(sc+sc)==0);
 CHECK(phonetic::find(sd,sd).compare(sd)==0);
+CHECK(phonetic::find(sd+sd,sd+sd).compare(sd+sd)==0);
 }
 }
