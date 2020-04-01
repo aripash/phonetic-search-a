@@ -17,7 +17,7 @@ CHECK_THROWS(phonetic::find("123  456","  "));
 }
 TEST_CASE("same word length"){
 CHECK(phonetic::find("test","test").compare("test")==0);
-CHECK(phonetic::find("test","").compare("")==0);
+CHECK_THROWS(phonetic::find("test",""));
 CHECK(phonetic::find("reallyLongWord","reallyLongWord").compare("reallyLongWord")==0);
 CHECK(phonetic::find("a","a").compare("a")==0);
 CHECK(phonetic::find("a b c d e","d").compare("d")==0);
@@ -54,15 +54,15 @@ CHECK(phonetic::find("test","DEst").compare("test")==0);
 CHECK(phonetic::find("test","DEZD").compare("test")==0);
 CHECK(phonetic::find("test testt","DEZD").compare("test")==0);
 CHECK(phonetic::find("test testt","DEZDD").compare("testt")==0);
-CHECK(phonetic::find("DEZD","test").compare("test")==0);
+CHECK(phonetic::find("DEZD","test").compare("DEZD")==0);
 
 }
 TEST_CASE("multiple of the same word/double meaning"){
 CHECK(phonetic::find("test test","test").compare("test")==0);
 CHECK(phonetic::find("test dezd","test").compare("test")==0);
-CHECK(phonetic::find("test dezd","dezd").compare("dezd")==0);
+CHECK(phonetic::find("test dezd","dezd").compare("dezd")!=0);
 CHECK(phonetic::find("test dezd","dezd").compare("test")==0);
-CHECK(phonetic::find("test dezd","test").compare("dezd")==0);
+CHECK(phonetic::find("test dezd","test").compare("dezd")!=0);
 
 }
 
